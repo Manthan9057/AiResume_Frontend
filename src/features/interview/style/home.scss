@@ -1,0 +1,259 @@
+@use "sass:color";
+
+// ── Variables ────────────────────────────────────────────────────────────────
+$bg-page:        #0d1117;
+$bg-card:        #161b22;
+$bg-panel:       #1c2230;
+$bg-input:       #1e2535;
+$border-color:   #2a3348;
+
+$text-primary:   #e6edf3;
+$text-muted:     #9aa4b2;   // improved readability
+$text-soft:      #c9d1d9;
+
+$accent:         #ff2d78;
+$accent-alt:     #ff6b9d;
+
+$badge-required: #ff2d78;
+$badge-best:     #ff2d78;
+
+$info-bg:        #1b2a4a;
+$info-border:    #2d4a7a;
+
+$font-stack:     system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+// ── Page Shell ───────────────────────────────────────────────────────────────
+.home-page {
+    width: 100%;
+    min-height: 100vh;
+    background-color: $bg-page;
+    color: $text-primary;
+    font-family: $font-stack;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+    gap: 2rem;
+}
+
+// ── Header ───────────────────────────────────────────────────────────────────
+.page-header {
+    text-align: center;
+
+    h1 {
+        font-size: 2.25rem;
+        font-weight: 700;
+        color: $text-primary;
+    }
+
+    p {
+        color: $text-muted;
+        margin-top: 0.5rem;
+    }
+
+    .highlight {
+        color: $accent;
+    }
+}
+
+// ── Card ─────────────────────────────────────────────────────────────────────
+.interview-card {
+    max-width: 900px;
+    width: 100%;
+    background-color: $bg-card;
+    border: 1px solid $border-color;
+    border-radius: 1rem;
+    overflow: hidden;
+
+    &__body {
+        display: flex;
+    }
+
+    &__footer {
+        border-top: 1px solid $border-color;
+        padding: 1rem 1.5rem;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
+}
+
+// ── Panel ────────────────────────────────────────────────────────────────────
+.panel {
+    flex: 1;
+    padding: 1.5rem;
+
+    h2 {
+        color: $text-primary;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .section-label {
+        color: $text-soft;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    // TEXTAREA FIX (MAIN ISSUE FIXED)
+    &__textarea {
+        width: 100%;
+        min-height: 180px;
+
+        background-color: $bg-input;
+        border: 1px solid $border-color;
+        border-radius: 10px;
+
+        padding: 0.9rem;
+        color: $text-primary;     // ✅ FIX: visible text
+        font-size: 0.95rem;
+        line-height: 1.4;
+
+        resize: none;
+
+        &::placeholder {
+            color: $text-muted;   // ✅ FIX: visible placeholder
+        }
+
+        &:focus {
+            outline: none;
+            border-color: $accent;
+            box-shadow: 0 0 0 3px rgba($accent, 0.15);
+        }
+
+        &--short {
+            min-height: 120px;
+        }
+    }
+}
+
+// ── Character Counter ────────────────────────────────────────────────────────
+.char-counter {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: $text-muted;
+    text-align: right;
+}
+
+// ── Dropzone ─────────────────────────────────────────────────────────────────
+.dropzone {
+    background-color: $bg-input;
+    border: 2px dashed $border-color;
+    border-radius: 12px;
+
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+
+    transition: 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+        border-color: $accent;
+        background-color: rgba($accent, 0.05);
+    }
+
+    &:active {
+        transform: scale(0.99);
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.3rem;
+    }
+
+    &__icon {
+        font-size: 1.6rem;
+    }
+
+    &__title {
+        color: $text-primary; // FIX: visible text
+        font-weight: 500;
+        font-size: 0.95rem;
+        word-break: break-word;
+    }
+
+    &__subtitle {
+        color: $text-muted;
+        font-size: 0.8rem;
+    }
+}
+
+// ── Divider ──────────────────────────────────────────────────────────────────
+.panel-divider {
+    width: 1px;
+    background: $border-color;
+}
+
+// ── OR Divider ───────────────────────────────────────────────────────────────
+.or-divider {
+    text-align: center;
+    margin: 1rem 0;
+    color: $text-muted;
+
+    span {
+        background: $bg-card;
+        padding: 0 0.5rem;
+    }
+}
+
+// ── Info Box ────────────────────────────────────────────────────────────────
+.info-box {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+
+    background: $info-bg;
+    border: 1px solid $info-border;
+
+    p {
+        color: $text-soft;
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+}
+
+// ── Button ───────────────────────────────────────────────────────────────────
+.generate-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(
+        135deg,
+        $accent 0%,
+        color.adjust($accent, $lightness: -10%) 100%
+    );
+
+    color: #fff;
+    font-weight: 600;
+    border-radius: 10px;
+    border: none;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+
+    &:hover {
+        opacity: 0.9;
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+}
+
+// ── Footer Text ──────────────────────────────────────────────────────────────
+.footer-info {
+    color: $text-muted;
+    font-size: 0.85rem;
+}
